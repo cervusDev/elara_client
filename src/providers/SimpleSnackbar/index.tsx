@@ -5,6 +5,7 @@ import { SnackbarProvider as Provider } from 'notistack';
 interface IProps {
   children: React.ReactNode;
 }
+
 export const SnackbarProvider = ({ children }: IProps) => {
   const ref = React.createRef<Provider>();
 
