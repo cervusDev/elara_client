@@ -6,7 +6,7 @@ const LOGIN_URL = process.env.LOGIN_URL as string;
 const SESSION_URL = process.env.SESSION_URL as string;
 
 export const axiosInstance = axios.create({
-  baseURL: 'http://localhost:3001/',
+  baseURL: process.env.BASE_URL as string,
   headers: {
     'Content-Type': 'application/json'
   }

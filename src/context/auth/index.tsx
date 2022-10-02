@@ -1,7 +1,9 @@
 import React from 'react';
 import Cookies from 'js-cookie';
+import { ROUTES } from '@/routes';
 import { TokenDecode } from './types';
 import { useSnackbar } from 'notistack';
+import { TOKEN_MESSAGE } from './error.message';
 import { SubmitHandler } from 'react-hook-form';
 import Router, { useRouter } from 'next/router';
 import { parseJwt } from '@/utils/tokenDecoder';
@@ -22,10 +24,12 @@ interface IProps {
   children: React.ReactNode;
 }
 
+const JWT_KEY = process.env.JWT_KEY as string;
+
 export const AuthContextProvider: React.FC<IProps> = ({ children }) => {
-  const [authenticated, setAuthenticated] = React.useState(Boolean(Cookies.get('JWT')));
+  const [authenticated, setAuthenticated] = React.useState(Boolean(Cookies.get(JWT_KEY)));
   const [tokenDecode, setTokenDecode] = React.useState<TokenDecode | null>(() => {
-    const token = Cookies.get('JWT');
+    const token = Cookies.get(JWT_KEY);
     if (token) {
       return parseJwt(token);
     }
@@ -46,17 +50,17 @@ export const AuthContextProvider: React.FC<IProps> = ({ children }) => {
 
     auth.post(data).then(({ token }) => {
       if (!token) {
-        enqueueSnackbar('Token validation is undefined', { variant: 'error' });
+        enqueueSnackbar(TOKEN_MESSAGE.UNDEFINED, { variant: 'error' });
         return;
       }
       setAuthenticated(true);
 
-      Cookies.set('JWT', token, { expires: 1, sameSite: 'lax' });
+      Cookies.set(JWT_KEY, token, { expires: 1, sameSite: 'lax' });
 
       const decode = parseJwt<TokenDecode>(token);
       setTokenDecode(decode);
 
-      Router.push('/dashboard');
+      Router.push(ROUTES.DASHBOARD);
     }).catch(({ response }: Err) => {
       const { data: { message } } = response;
       enqueueSnackbar(message, { variant: 'error' });
@@ -64,11 +68,10 @@ export const AuthContextProvider: React.FC<IProps> = ({ children }) => {
   }, [enqueueSnackbar]);
 
   const handleLogout = () => {
-    Cookies.remove('JWT');
-    if (pathname !== '/' && authenticated) {
-      Router.push('/');
+    Cookies.remove(JWT_KEY);
+    if (pathname !== ROUTES.HOME && authenticated) {
+      Router.push(ROUTES.HOME);
     }
-
     setAuthenticated(false);
   };
 
