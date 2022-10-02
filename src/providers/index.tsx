@@ -3,6 +3,7 @@ import { theme } from '../styles/theme';
 import { SnackbarProvider } from './Snackbar';
 import { ReactQueryProvider } from './ReactQuery';
 import { ThemeProvider } from 'styled-components';
+import { AuthContextProvider } from '../context/auth';
 
 interface IProps {
   children: React.ReactNode
@@ -11,11 +12,13 @@ interface IProps {
 export function MiddlewareProviders({ children }: IProps) {
   return (
     <ReactQueryProvider>
-      <ThemeProvider theme={theme}>
-        <SnackbarProvider>
-          {children}
-        </SnackbarProvider>
-      </ThemeProvider>
+      <SnackbarProvider>
+        <ThemeProvider theme={theme}>
+          <AuthContextProvider>
+            {children}
+          </AuthContextProvider>
+        </ThemeProvider>
+      </SnackbarProvider>
     </ReactQueryProvider>
   );
 }

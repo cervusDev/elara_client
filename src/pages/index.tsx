@@ -1,5 +1,5 @@
 import type { NextPage } from 'next';
-import { Content } from '../components/home/ecossistem';
+import { Content } from '../components/Login/ecossistem';
 
 const Home: NextPage = () => ( <Content /> );
 

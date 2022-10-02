@@ -14,6 +14,8 @@
     "@material-ui/styles": "^4.11.5",
     "@mui/icons-material": "^5.10.6",
     "@mui/material": "^5.10.7",
+    "@unform/core": "^2.1.6",
+    "@unform/web": "^2.1.6",
     "axios": "^0.27.2",
     "js-cookie": "^3.0.1",
     "next": "12.3.1",
@@ -21,8 +23,8 @@
     "notistack": "^2.0.5",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-hook-form": "^7.36.1",
     "react-query": "^3.39.2",
-    "react-simple-snackbar": "^1.1.11",
     "styled-components": "^5.3.6"
   },
   "devDependencies": {
