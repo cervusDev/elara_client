@@ -1,9 +1,9 @@
 import React from 'react';
-import { theme } from '../styles/theme';
+import { theme } from '@/styles/theme';
 import { SnackbarProvider } from './Snackbar';
 import { ReactQueryProvider } from './ReactQuery';
 import { ThemeProvider } from 'styled-components';
-import { AuthContextProvider } from '../context/auth';
+import { AuthContextProvider } from '@/context/auth';
 
 interface IProps {
   children: React.ReactNode

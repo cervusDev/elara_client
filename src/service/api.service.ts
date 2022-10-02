@@ -1,5 +1,5 @@
 import { axiosInstance } from './axios';
-import { mountUrl } from '../utils/mountUrl';
+import { mountUrl } from '@/utils/mountUrl';
 
 type QueryProps = Record<string, any>;
 type Post<T> = Omit<T, OmitPostProps>;

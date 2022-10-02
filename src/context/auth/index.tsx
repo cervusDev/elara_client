@@ -4,10 +4,10 @@ import { TokenDecode } from './types';
 import { useSnackbar } from 'notistack';
 import { SubmitHandler } from 'react-hook-form';
 import Router, { useRouter } from 'next/router';
-import { parseJwt } from '../../utils/tokenDecoder';
-import { auth, ErrorHandler as Err } from '../../service';
-import { Login } from '../../service/endpoints/login/types';
-import { usernameValidator } from '../../utils/validators/username';
+import { parseJwt } from '@/utils/tokenDecoder';
+import { auth, ErrorHandler as Err } from '@/service';
+import { Login } from '@/service/endpoints/login/types';
+import { usernameValidator } from '@/utils/validators/username';
 
 interface IAuthContextProps {
   authenticated: boolean;

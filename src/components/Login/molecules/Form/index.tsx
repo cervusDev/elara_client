@@ -1,9 +1,9 @@
 import React from 'react';
+import { useAuth } from '@/hooks';
 import { WrapperInput } from './styles';
-import { useAuth } from '../../../../hooks';
-import { Button } from '../../../../global/components/Button';
-import { FormGuide } from '../../../../global/guides/FormGuide';
-import { FormField } from '../../../../global/components/inputs';
+import { Button } from '@/global/components/Button';
+import { FormGuide } from '@/global/guides/FormGuide';
+import { FormField } from '@/global/components/inputs';
 
 export const Inputs: React.FC = () => {
   const { handleLogin } = useAuth();
