@@ -4,6 +4,7 @@ import { SnackbarProvider } from './Snackbar';
 import { ReactQueryProvider } from './ReactQuery';
 import { ThemeProvider } from 'styled-components';
 import { AuthContextProvider } from '@/context/auth';
+import { StyledEngineProvider } from '@mui/material/styles';
 
 interface IProps {
   children: React.ReactNode
@@ -15,7 +16,9 @@ export function MiddlewareProviders({ children }: IProps) {
       <SnackbarProvider>
         <ThemeProvider theme={theme}>
           <AuthContextProvider>
-            {children}
+            <StyledEngineProvider injectFirst>
+              {children}
+            </StyledEngineProvider>
           </AuthContextProvider>
         </ThemeProvider>
       </SnackbarProvider>
