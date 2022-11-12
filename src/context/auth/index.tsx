@@ -1,6 +1,5 @@
 import React from 'react';
 import Cookies from 'js-cookie';
-import { ROUTES } from '@/routes';
 import { TokenDecode } from './types';
 import { useSnackbar } from 'notistack';
 import { TOKEN_MESSAGE } from './error.message';
@@ -60,7 +59,7 @@ export const AuthContextProvider: React.FC<IProps> = ({ children }) => {
       const decode = parseJwt<TokenDecode>(token);
       setTokenDecode(decode);
 
-      Router.push(ROUTES.DASHBOARD);
+      Router.push('/dashboard');
     }).catch(({ response }: Err) => {
       const { data: { message } } = response;
       enqueueSnackbar(message, { variant: 'error' });
@@ -69,8 +68,8 @@ export const AuthContextProvider: React.FC<IProps> = ({ children }) => {
 
   const handleLogout = () => {
     Cookies.remove(JWT_KEY);
-    if (pathname !== ROUTES.HOME && authenticated) {
-      Router.push(ROUTES.HOME);
+    if (pathname !== '/' && authenticated) {
+      Router.push('/');
     }
     setAuthenticated(false);
   };
